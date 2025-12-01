@@ -385,9 +385,9 @@ install_build() {
   git clone --quiet --depth 1 -b "${BRANCH}" "${REPO_URL}" "${BUILD_DIR}"
 
   echo "Building 3proxy..."
-  echo "Building 3proxy..."
-  if ! make -C "${BUILD_DIR}" -f Makefile.Linux > /dev/null; then
+  if ! make -C "${BUILD_DIR}" -f Makefile.Linux >/tmp/.3proxy-build.log 2>&1; then
     echo "ERROR: 3proxy build failed" >&2
+    echo "See build log: /tmp/.3proxy-build.log" >&2
     exit 1
   fi
 
